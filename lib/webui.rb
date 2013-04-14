@@ -1,6 +1,5 @@
 require 'bundler/setup'
 require 'json'
-require 'sass'
 require 'sequel'
 require 'sinatra/base'
 
@@ -43,6 +42,8 @@ class WebUI < Sinatra::Base
   put '/api/locations/:id' do
     location = get_location
 
+    # Generally this would need to be sanitized, but the fields on this model
+    # are all user-accessible, so we take the easy road.
     location.update(JSON.parse(request.body.read))
 
     location.to_json
