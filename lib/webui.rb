@@ -23,8 +23,11 @@ class WebUI < Sinatra::Base
     send_file File.join(settings.public_folder, 'index.html')
   end
 
-  get '/api/locations' do
+  before '/api/*' do
     content_type :json
+  end
+
+  get '/api/locations' do
     # If this was a production app we'd have multi-user/pagination. Despite my
     # aversion to *ever* writing an endpoint that returns all rows in a table,
     # this seems like the right path for a demo app.
@@ -32,8 +35,19 @@ class WebUI < Sinatra::Base
   end
 
   post '/api/locations' do
-    content_type :json
-    location = FavoriteLocation.create(JSON.parse(params[:location]))
+    location = FavoriteLocation.create(JSON.parse(request.body.read))
+
+    location.to_json
+  end
+
+  put '/api/locations/:id' do
+    location = FavoriteLocation.where(id: params[:id]).first
+
+    unless location
+      halt({ error: true, message: 'not found' }.to_json)
+    end
+
+    location.update(JSON.parse(request.body.read))
 
     location.to_json
   end

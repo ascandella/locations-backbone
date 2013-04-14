@@ -51,11 +51,24 @@ describe WebUI do
       end
 
       it 'creates the model with an id' do
-        post '/api/locations', location: location.to_json
-
+        post '/api/locations', location.to_json
         created = JSON.parse(last_response.body)
+
         created[:name].should == location[:name]
         created[:id].should_not be_nil
+      end
+    end
+
+    describe 'updating a record' do
+      let(:location) do
+        FavoriteLocation.create(name: 'for updating')
+      end
+
+      it 'saves and returns' do
+        put "/api/locations/#{location.id}", { name: 'updated' }.to_json
+
+        new_location = JSON.parse(last_response.body)
+        new_location[:name].should == 'updated'
       end
     end
   end
