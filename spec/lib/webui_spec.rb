@@ -21,7 +21,7 @@ describe WebUI do
       end
 
       context 'with a location' do
-        let!(:location) do
+        let(:location) do
           {
             name: 'for the tests',
             latitude: 42,
@@ -30,7 +30,7 @@ describe WebUI do
         end
 
         before do
-          FavoriteLocation.insert(location)
+          FavoriteLocation.create(location)
         end
 
         it 'returns the location' do
@@ -38,6 +38,24 @@ describe WebUI do
 
           last_response.body.should include location[:name]
         end
+      end
+    end
+
+    describe 'creating a new record' do
+      let(:location) do
+        {
+          name: 'newly created',
+          latitude: 1,
+          longitude: 2
+        }
+      end
+
+      it 'creates the model with an id' do
+        post '/api/locations', location: location.to_json
+
+        created = JSON.parse(last_response.body)
+        created[:name].should == location[:name]
+        created[:id].should_not be_nil
       end
     end
   end

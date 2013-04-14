@@ -30,4 +30,11 @@ class WebUI < Sinatra::Base
     # this seems like the right path for a demo app.
     FavoriteLocation.naked.all.to_json
   end
+
+  post '/api/locations' do
+    content_type :json
+    location = FavoriteLocation.create(JSON.parse(params[:location]))
+
+    location.to_json
+  end
 end
