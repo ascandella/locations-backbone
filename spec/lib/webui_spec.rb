@@ -71,6 +71,28 @@ describe WebUI do
         new_location[:name].should == 'updated'
       end
     end
+
+    describe 'deleting a record' do
+      context 'for a non-existent entry' do
+        it 'throws an error' do
+          delete '/api/locations/-1'
+
+          last_response.body.should match /not found/i
+        end
+      end
+
+      context 'for a record that exists' do
+        let(:location) do
+          FavoriteLocation.create(name: 'kill me, please')
+        end
+
+        it 'deletes the record' do
+          delete "/api/locations/#{location.id}"
+
+          FavoriteLocation.where(id: location.id).count.should == 0
+        end
+      end
+    end
   end
 
   describe 'a non-existent page' do

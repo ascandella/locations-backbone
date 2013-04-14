@@ -41,14 +41,28 @@ class WebUI < Sinatra::Base
   end
 
   put '/api/locations/:id' do
+    location = get_location
+
+    location.update(JSON.parse(request.body.read))
+
+    location.to_json
+  end
+
+  delete '/api/locations/:id' do
+    location = get_location
+
+    location.delete
+
+    { message: 'successfully deleted' }.to_json
+  end
+
+  def get_location
     location = FavoriteLocation.where(id: params[:id]).first
 
     unless location
       halt({ error: true, message: 'not found' }.to_json)
     end
 
-    location.update(JSON.parse(request.body.read))
-
-    location.to_json
+    location
   end
 end
