@@ -9,7 +9,6 @@ describe WebUI do
   it 'works' do
     get '/'
 
-    puts last_response.inspect
     last_response.should be_ok
   end
 
