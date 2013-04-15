@@ -4,12 +4,12 @@
   margin-left: 12px;
 }
 
-#location-list > div {
+#location-list .location-view {
   border-top: 1px solid #ddd;
   padding: 1em 0;
 }
 
-#location-list > div:first-child {
+#location-list .location-view:first-child {
   border-top: 0;
 }
 

@@ -54,6 +54,7 @@ define('LocationListView', [
     },
 
     render: function() {
+      this.setup();
       var that = this;
 
       this.locations.each(function(location) {

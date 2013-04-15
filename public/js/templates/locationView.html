@@ -1,56 +1,58 @@
-<% if (editing) { %>
+<div class="location-view">
+  <% if (editing) { %>
 
-  <form>
-    <label>Name</label>
-    <input class="name" type="text" placeholder="Name It" value="<%= location.name %>">
+    <form>
+      <label>Name</label>
+      <input class="name" type="text" placeholder="Name It" value="<%= location.name %>">
 
-    <label>Address</label>
-    <input class="address" type="text" placeholder="Enter an address" value="<%= location.address %>">
+      <label>Address</label>
+      <input class="address" type="text" placeholder="Enter an address" value="<%= location.address %>">
 
-    <label>Latitude</label>
-    <input class="latitude" type="number" value="<%= location.latitude %>">
+      <label>Latitude</label>
+      <input class="latitude" type="number" value="<%= location.latitude %>">
 
-    <label>Longitude</label>
-    <input class="longitude" type="number" placeholder="Enter an address" value="<%= location.longitude %>">
+      <label>Longitude</label>
+      <input class="longitude" type="number" placeholder="Enter an address" value="<%= location.longitude %>">
 
-    <a class="small submit button">
-      <% if (this.id) { %>
-        Update
-      <% } else { %>
-        Save
-      <% } %>
-    </a>
+      <a class="small submit button">
+        <% if (this.id) { %>
+          Update
+        <% } else { %>
+          Save
+        <% } %>
+      </a>
 
-    <a class="small button secondary cancel">Cancel</a>
-  </form>
+      <a class="small button secondary cancel">Cancel</a>
+    </form>
 
-<% } else { %>
+  <% } else { %>
 
-  <h5 class="subheader" data-id="<%= location.id %>">
-    <a href="#edit" class="edit">
-      <%= location.name %>
-    </a>
-  </h5>
-  <% if (location.address) { %>
-    <p>
-      <%= location.address %>
-      <% if (location.latitude && location.longitude) { %>
-        <span class="coordinates">
-          (<%= location.latitude %>,
-          <%= location.longitude %>)
-        </span>
-      <% } %>
-    </p>
+    <h5 class="subheader" data-id="<%= location.id %>">
+      <a href="#edit" class="edit">
+        <%= location.name %>
+      </a>
+    </h5>
+    <% if (location.address) { %>
+      <p>
+        <%= location.address %>
+        <% if (location.latitude && location.longitude) { %>
+          <span class="coordinates">
+            (<%= location.latitude %>,
+            <%= location.longitude %>)
+          </span>
+        <% } %>
+      </p>
+    <% } %>
+    <div class="controls">
+      <a class="small button edit">Edit</a>
+      <a class="small button secondary delete">Delete</a>
+    </div>
+
+    <div class="alert-box alert hide">
+      <p>Are you sure you want to remove this?</p>
+      <a class="small button confirm-deletion">Yes</a>
+      <a class="small button secondary cancel-deletion">Nah!</a>
+    </div>
+
   <% } %>
-  <div class="controls">
-    <a class="small button edit">Edit</a>
-    <a class="small button secondary delete">Delete</a>
-  </div>
-
-  <div class="alert-box alert hide">
-    <p>Are you sure you want to remove this?</p>
-    <a class="small button confirm-deletion">Yes</a>
-    <a class="small button secondary cancel-deletion">Nah!</a>
-  </div>
-
-<% } %>
+</div>

@@ -16,6 +16,8 @@ define('FavoritesRouter', [
     },
 
     defaultRoute: function() {
+      // Render an before fetching data to have actionable buttons
+      this.locations.render();
       this.locations.fetchData();
     }
   });
