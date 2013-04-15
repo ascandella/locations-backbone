@@ -1,6 +1,7 @@
 define('Router', [
-  'backbone'
-], function(Backbone) {
+  'backbone',
+  'LocationListView'
+], function(Backbone, LocationListView) {
   var Router = Backbone.Router.extend({
     routes: {
       '' : 'defaultRoute'
@@ -8,10 +9,12 @@ define('Router', [
 
     initialize: function () {
       console.log("Init router");
+      this.locations = new LocationListView();
     },
 
     defaultRoute: function() {
       console.log("Default route");
+      this.locations.fetchData();
     }
   });
 

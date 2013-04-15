@@ -16,16 +16,17 @@ requirejs.config({
   },
 
   paths: {
-    'backbone'         : '//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min',
-    'foundation'       : 'foundation.min',
-    'jquery'           : '//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min',
-    'underscore'       : '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min',
-    'FavoritesApp'     : 'app',
-    'FavoriteLocation' : 'models/favoriteLocation',
-    'FavoritesAppView' : 'views/appView'
+    'backbone'           : '//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min',
+    'foundation'         : 'foundation.min',
+    'jquery'             : '//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min',
+    'underscore'         : '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min',
+    'FavoritesApp'       : 'app',
+    'FavoriteLocation'   : 'models/favoriteLocation',
+    'LocationListView'   : 'views/index',
+    'LocationCollection' : 'collections/locationCollection'
   }
 });
 
-require(['FavoritesApp'], function(App) {
-  new App().start();
+require(['FavoritesApp'], function(FavoritesApp) {
+  new FavoritesApp().start();
 });
