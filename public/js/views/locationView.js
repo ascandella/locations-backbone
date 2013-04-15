@@ -1,10 +1,12 @@
 define('LocationView', [
   'backbone',
   'underscore',
+  'googlemaps',
   'text!templates/locationView.html'
-], function(Backbone, _, template) {
+], function(Backbone, _, maps, template) {
   var LocationView = Backbone.View.extend({
     events: {
+      'keyup .address'          : 'goecodeAddress',
       'click .edit'             : 'editInline',
       'click .cancel'           : 'cancelInline',
       'click .cancel-deletion'  : 'toggleDangerZone',
@@ -70,6 +72,30 @@ define('LocationView', [
 
       // Switch back to non-edit mode
       this.editInline();
+    },
+
+    goecodeAddress: function() {
+      var that = this,
+          address = this.$('.address').val();
+
+      if (this.geocoding) {
+        return;
+      }
+
+      this.geocoding = true;
+      maps.geoCode(address, function(results, error) {
+        this.geocoding = false;
+        var bestMatch = results[0],
+            position;
+
+        if (!bestMatch.geometry || !bestMatch.geometry.location) {
+          throw('invalid response received from google');
+        }
+
+        position = bestMatch.geometry.location;
+        this.$('.latitude').val(position.lat());
+        this.$('.longitude').val(position.lng());
+      });
     },
 
     render: function() {

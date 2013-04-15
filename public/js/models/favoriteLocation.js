@@ -24,8 +24,8 @@ define('FavoriteLocation', [
         return "must have both latitude and longitude";
       }
 
-      if (Math.abs(latitude) > 90 || Math.abs(longitude) > 90) {
-        return "must be between 0 and 90 degrees";
+      if (Math.abs(latitude) > 90 || Math.abs(longitude) > 180) {
+        return "not a real place";
       }
     }
   });
