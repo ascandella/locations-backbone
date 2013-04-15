@@ -42,18 +42,23 @@ define('MapView', [
     },
 
     fitMap: function() {
-      if (this.collection.length < 2) {
-        return;
-      }
+      var bounds       = new google.maps.LatLngBounds(),
+          placedPoints = 0;
 
-      var bounds = new google.maps.LatLngBounds();
       this.collection.each(function(location) {
         if (location.hasLocation()) {
           bounds.extend(location.getPoint());
+          placedPoints++;
         }
       });
 
-      this.map.fitBounds(bounds);
+      if (placedPoints) {
+        this.map.fitBounds(bounds);
+
+        if (placedPoints < 2) {
+          this.map.setZoom(12);
+        }
+      }
     },
 
     removeOne: function(model) {
