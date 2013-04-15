@@ -20,13 +20,13 @@ define([
 
     describe('#validate', function() {
       it('is valid by default', function() {
-        expect(this.location.validate()).to.be.true;
+        expect(this.location.validate(this.location.toJSON())).to.be.undefined;
       });
 
       it('rejects ridiculous coordinates', function() {
         this.location.set({ latitude: -9000 });
 
-        expect(this.location.validate()).to.be.false;
+        expect(this.location.validate(this.location.toJSON())).to.be.a('string');
       });
     });
   });
