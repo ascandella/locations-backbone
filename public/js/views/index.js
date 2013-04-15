@@ -32,16 +32,29 @@ define('LocationListView', [
     },
 
     addOne: function(location) {
-      var locationView = new LocationView({ model: location });
-      this.$el.prepend(locationView.render().el);
+      this.setup();
+
+      var locationView = new LocationView({ model: location }),
+          $newEntry = locationView.render().$el.hide();
+
+      this.$el.prepend($newEntry);
+      $newEntry.slideDown();
     },
 
-    render: function() {
-      var that = this;
+    setup: function() {
+      if (this._setup) {
+        return;
+      }
 
       this.$el.html(this.template({
         locations: this.locations
       }));
+
+      this._setup = true;
+    },
+
+    render: function() {
+      var that = this;
 
       this.locations.each(function(location) {
         that.addOne(location);
