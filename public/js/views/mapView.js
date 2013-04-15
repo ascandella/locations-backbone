@@ -9,6 +9,7 @@ define('MapView', [
 
     initialize: function() {
       this.mapOptions = {
+        disableDefaultUI: true,
         center: new google.maps.LatLng(37.775, -122.4183),
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         zoom: 12
@@ -33,6 +34,10 @@ define('MapView', [
     },
 
     fitMap: function() {
+      if (this.collection.length < 2) {
+        return;
+      }
+
       var bounds = new google.maps.LatLngBounds();
       this.collection.each(function(location) {
         bounds.extend(location.getPoint());
