@@ -11,19 +11,17 @@ define('FavoriteLocation', [
       return this.attributes;
     },
 
-    validate: function() {
-      var latitude  = parseFloat(this.get('latitude'), 10),
-          longitude = parseFloat(this.get('longitude'), 10);
+    validate: function(attrs) {
+      var latitude  = parseFloat(attrs.latitude, 10),
+          longitude = parseFloat(attrs.longitude, 10);
 
       if (!latitude || !longitude) {
-        return false;
+        return "must have both latitude and longitude";
       }
 
       if (Math.abs(latitude) > 90 || Math.abs(longitude) > 90) {
-        return false;
+        return "must be between 0 and 90 degrees";
       }
-
-      return true;
     }
   });
 

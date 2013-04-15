@@ -6,7 +6,7 @@ define('LocationView', [
   var LocationView = Backbone.View.extend({
     events: {
       'click .edit'             : 'editInline',
-      'click .cancel'           : 'editInline',
+      'click .cancel'           : 'cancelInline',
       'click .cancel-deletion'  : 'cancelDeletion',
       'click .confirm-deletion' : 'actuallyDelete',
       'click .delete'           : 'confirmDeletion',
@@ -43,12 +43,17 @@ define('LocationView', [
           .slideToggle();
     },
 
-    editInline: function() {
-      this.editing = !this.editing;
+    cancelInline: function() {
       // They hit 'Cancel' on creating a new entry
-      if (!this.editing && !this.id) {
+      if (this.editing && !this.id) {
         return this.remove();
       }
+
+      return this.editInline();
+    },
+
+    editInline: function() {
+      this.editing = !this.editing;
 
       this.render();
     },
