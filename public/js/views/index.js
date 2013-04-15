@@ -4,8 +4,10 @@ define('LocationListView', [
   'underscore',
   'FavoriteLocation',
   'LocationCollection',
-  'LocationView'
-], function(Backbone, $, _, FavoriteLocation, LocationCollection, LocationView) {
+  'LocationView',
+  'text!templates/locationView.html'
+], function(Backbone, $, _, FavoriteLocation, LocationCollection,
+            LocationView, template) {
   var LocationListView = Backbone.View.extend({
     events: {
       'click .add-location': 'addLocation'
@@ -14,7 +16,9 @@ define('LocationListView', [
     el: '#location-list',
 
     initialize: function() {
+      this.template  = _.template(template);
       this.locations = new LocationCollection();
+
       this.listenTo(this.locations, 'add', this.addOne);
       this.listenTo(this.locations, 'reset', this.render);
     },
@@ -35,12 +39,9 @@ define('LocationListView', [
     render: function() {
       var that = this;
 
-      // This logic *probably* belongs in a view, but I'd rather keep
-      // collection-views out of the picture and just deal with individual
-      // model-views.
-      if (!this.locations.length) {
-        this.$el.find('.empty-notice').hide().removeClass('hide').fadeIn();
-      }
+      this.$el.html(this.template({
+        locations: this.locations
+      }));
 
       _.each(this.locations, function(location) {
         that.addOne(location);

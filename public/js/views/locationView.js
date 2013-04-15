@@ -22,6 +22,8 @@ define('LocationView', [
     },
 
     updateModel: function() {
+      this.$el.removeClass('error');
+
       // This doesn't feel awesome
       this.model.set({
         address   : this.$el.find('.address').val(),
@@ -29,6 +31,11 @@ define('LocationView', [
         longitude : this.$el.find('.longitude').val(),
         name      : this.$el.find('.name').val()
       });
+
+      if (!this.model.validate()) {
+        this.$el.addClass('error');
+        return false;
+      }
 
       this.model.save();
 
