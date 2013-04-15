@@ -1,4 +1,4 @@
-define('Router', [
+define('FavoritesRouter', [
   'backbone',
   'LocationListView',
   'MapView'

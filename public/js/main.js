@@ -25,6 +25,7 @@ requirejs.config({
     'text'               : '//cdnjs.cloudflare.com/ajax/libs/require-text/2.0.5/text',
 
     'FavoritesApp'       : 'app',
+    'FavoritesRouter'    : 'router',
     'FavoriteLocation'   : 'models/favoriteLocation',
     'LocationListView'   : 'views/index',
     'LocationView'       : 'views/locationView',

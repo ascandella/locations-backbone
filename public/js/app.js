@@ -2,7 +2,7 @@ define('FavoritesApp', [
   'backbone',
   'foundation',
   'jquery',
-  'Router'
+  'FavoritesRouter'
 ], function(Backbone, foundation, $, Router) {
   function FavoritesApp() {
     this.router = new Router();
