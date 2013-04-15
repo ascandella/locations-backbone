@@ -22,13 +22,13 @@ requirejs.config({
   },
 
   paths: {
-    'async'              : '//cdnjs.cloudflare.com/ajax/libs/async/1.22/async.min',
-    'backbone'           : '//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min',
+    'async'              : 'vendor/async.min',
+    'backbone'           : 'vendor/backbone-min',
     'foundation'         : 'foundation.min',
     'googlemaps'         : 'support/googlemaps',
-    'jquery'             : '//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min',
-    'underscore'         : '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min',
-    'text'               : '//cdnjs.cloudflare.com/ajax/libs/require-text/2.0.5/text',
+    'jquery'             : 'vendor/jquery',
+    'underscore'         : 'vendor/underscore-min',
+    'text'               : 'vendor/text',
 
     'FavoritesApp'       : 'app',
     'FavoritesRouter'    : 'router',

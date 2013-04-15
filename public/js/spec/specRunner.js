@@ -12,6 +12,7 @@ define('SpecRunner', [
   return {
     run: function() {
       mocha.run();
+
     }
   }
 });

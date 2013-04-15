@@ -5,15 +5,15 @@ define('LocationListView', [
   'FavoriteLocation',
   'LocationCollection',
   'LocationView',
-  'text!templates/locationView.html'
+  'text!templates/locationList.html'
 ], function(Backbone, $, _, FavoriteLocation, LocationCollection,
             LocationView, template) {
   var LocationListView = Backbone.View.extend({
+    el: '#location-list',
+
     events: {
       'click .add-location': 'addLocation'
     },
-
-    el: '#location-list',
 
     initialize: function() {
       this.template  = _.template(template);
@@ -43,7 +43,7 @@ define('LocationListView', [
         locations: this.locations
       }));
 
-      _.each(this.locations, function(location) {
+      this.locations.each(function(location) {
         that.addOne(location);
       });
 
