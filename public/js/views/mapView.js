@@ -18,6 +18,7 @@ define('MapView', [
       this.markerStore = {};
 
       this.listenTo(this.collection, 'add remove', this.fitMap);
+      this.listenTo(this.collection, 'change:latitude change:longitude', this.pointMoved);
       this.listenTo(this.collection, 'add',        this.addOne);
       this.listenTo(this.collection, 'remove',     this.removeOne);
     },
@@ -33,6 +34,13 @@ define('MapView', [
       return marker;
     },
 
+    pointMoved: function(location) {
+      this.removeOne(location);
+      this.addOne(location);
+
+      this.fitMap();
+    },
+
     fitMap: function() {
       if (this.collection.length < 2) {
         return;
@@ -40,7 +48,9 @@ define('MapView', [
 
       var bounds = new google.maps.LatLngBounds();
       this.collection.each(function(location) {
-        bounds.extend(location.getPoint());
+        if (location.hasLocation()) {
+          bounds.extend(location.getPoint());
+        }
       });
 
       this.map.fitBounds(bounds);

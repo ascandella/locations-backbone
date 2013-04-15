@@ -84,7 +84,7 @@ define('LocationView', [
 
       this.geocoding = true;
       maps.geoCode(address, function(results, error) {
-        this.geocoding = false;
+        that.geocoding = false;
         if (!results.length) {
           return;
         }
@@ -97,8 +97,8 @@ define('LocationView', [
         }
 
         position = bestMatch.geometry.location;
-        this.$('.latitude').val(position.lat());
-        this.$('.longitude').val(position.lng());
+        that.$('.latitude').val(position.lat());
+        that.$('.longitude').val(position.lng());
       });
     },
 
