@@ -44,7 +44,9 @@ class WebUI < Sinatra::Base
 
     # Generally this would need to be sanitized, but the fields on this model
     # are all user-accessible, so we take the easy road.
-    location.update(JSON.parse(request.body.read))
+    attributes = JSON.parse(request.body.read)
+    attributes.delete('id')
+    location.update(attributes)
 
     location.to_json
   end

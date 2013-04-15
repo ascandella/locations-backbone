@@ -6,6 +6,10 @@ define('LocationListView', [
   'LocationView'
 ], function(Backbone, $, _, LocationCollection, LocationView) {
   var LocationListView = Backbone.View.extend({
+    events: {
+      'click .add-location': 'addLocation'
+    },
+
     el: '#location-list',
 
     initialize: function() {
@@ -18,9 +22,13 @@ define('LocationListView', [
       this.locations.fetch();
     },
 
+    addLocation: function() {
+      // TODO THIS
+    },
+
     addOne: function(location) {
       var locationView = new LocationView({ model: location });
-      this.$el.append(locationView.render().el);
+      this.$el.prepend(locationView.render().el);
     },
 
     render: function() {

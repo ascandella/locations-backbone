@@ -1,4 +1,39 @@
-<h4 class="subheader"><%= location.name %></h4>
-<% if (location.address) { %>
-<p><%= location.address %></p>
+<% if (editing) { %>
+
+  <form>
+    <label>Name</label>
+    <input class="name" type="text" placeholder="Name It" value="<%= location.name %>">
+
+    <label>Address</label>
+    <input class="address" type="text" placeholder="Enter an address" value="<%= location.address %>">
+
+    <label>Latitude</label>
+    <input class="latitude" type="number" value="<%= location.latitude %>">
+
+    <label>Longitude</label>
+    <input class="longitude" type="number" placeholder="Enter an address" value="<%= location.longitude %>">
+
+    <a class="small submit button">Update</a>
+  </form>
+
+<% } else { %>
+
+  <h4 class="subheader" data-id="<%= location.id %>">
+    <a href="#edit" class="edit">
+      <%= location.name %>
+    </a>
+  </h4>
+  <% if (location.address) { %>
+    <p>
+      <%= location.address %>
+      <% if (location.latitude && location.longitude) { %>
+        <span class="coordinates">
+          (<%= location.latitude %>,
+          <%= location.longitude %>)
+        </span>
+      <% } %>
+    </p>
+  <% } %>
+  <a href="#edit" class="edit">Edit</a>
+
 <% } %>
