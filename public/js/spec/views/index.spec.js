@@ -20,12 +20,5 @@ define([
         expect(this.fragment()).to.have.string('add-location');
       });
     });
-
-    describe('with multiple locations', function() {
-      beforeEach(function() {
-
-      });
-
-    });
   });
 });
