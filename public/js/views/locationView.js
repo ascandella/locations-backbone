@@ -45,6 +45,11 @@ define('LocationView', [
 
     editInline: function() {
       this.editing = !this.editing;
+      // They hit 'Cancel' on creating a new entry
+      if (!this.editing && !this.id) {
+        return this.remove();
+      }
+
       this.render();
     },
 
