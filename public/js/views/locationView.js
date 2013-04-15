@@ -7,9 +7,9 @@ define('LocationView', [
     events: {
       'click .edit'             : 'editInline',
       'click .cancel'           : 'cancelInline',
-      'click .cancel-deletion'  : 'cancelDeletion',
+      'click .cancel-deletion'  : 'toggleDangerZone',
       'click .confirm-deletion' : 'actuallyDelete',
-      'click .delete'           : 'confirmDeletion',
+      'click .delete'           : 'toggleDangerZone',
       'click .submit'           : 'updateModel'
     },
 
@@ -28,10 +28,6 @@ define('LocationView', [
       this.$el.slideUp(function() {
         that.$el.remove();
       });
-    },
-
-    confirmDeletion: function() {
-      this.toggleDangerZone();
     },
 
     toggleDangerZone: function() {
