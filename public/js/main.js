@@ -10,6 +10,12 @@ requirejs.config({
     'jquery'     : {
       exports: '$'
     },
+    'mocha'      : {
+      init: function() {
+        this.mocha.setup('bdd');
+        return this.mocha;
+      }
+    },
     'underscore' : {
       exports: '_'
     }
@@ -30,10 +36,20 @@ requirejs.config({
     'LocationListView'   : 'views/index',
     'LocationView'       : 'views/locationView',
     'LocationCollection' : 'collections/locationCollection',
-    'MapView'            : 'views/mapView'
+    'MapView'            : 'views/mapView',
+
+    'mocha'              : 'spec/mocha',
+    'chai'               : 'spec/chai',
+    'SpecRunner'         : 'spec/specRunner'
   }
 });
 
-require(['FavoritesApp'], function(FavoritesApp) {
-  new FavoritesApp().start();
-});
+if (!window._mochaSpecMode) {
+  require(['FavoritesApp'], function(FavoritesApp) {
+    new FavoritesApp().start();
+  });
+} else {
+  require(['SpecRunner'], function(SpecRunner) {
+    SpecRunner.run();
+  });
+}
