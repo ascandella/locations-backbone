@@ -20,6 +20,7 @@ define('LocationListView', [
       this.locations = new LocationCollection();
 
       this.listenTo(this.locations, 'add', this.addOne);
+      this.listenTo(this.locations, 'removeOne', this.removeOne);
       this.listenTo(this.locations, 'reset', this.render);
     },
 
@@ -34,11 +35,19 @@ define('LocationListView', [
     addOne: function(location) {
       this.setup();
 
+      this.$el.find('.no-locations').hide();
+
       var locationView = new LocationView({ model: location }),
           $newEntry = locationView.render().$el.hide();
 
       this.$el.prepend($newEntry);
       $newEntry.slideDown();
+    },
+
+    removeOne: function() {
+      if (!this.locations.length) {
+        this.$el.find('.no-locations').show();
+      }
     },
 
     setup: function() {
