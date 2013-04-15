@@ -85,6 +85,10 @@ define('LocationView', [
       this.geocoding = true;
       maps.geoCode(address, function(results, error) {
         this.geocoding = false;
+        if (!results.length) {
+          return;
+        }
+
         var bestMatch = results[0],
             position;
 

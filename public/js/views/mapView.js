@@ -18,8 +18,8 @@ define('MapView', [
       this.markerStore = {};
 
       this.listenTo(this.collection, 'add remove', this.fitMap);
-      this.listenTo(this.collection, 'add', this.addOne);
-      this.listenTo(this.collection, 'remove', this.removeOne);
+      this.listenTo(this.collection, 'add',        this.addOne);
+      this.listenTo(this.collection, 'remove',     this.removeOne);
     },
 
     addOne: function(location) {
