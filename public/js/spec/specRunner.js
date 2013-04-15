@@ -3,7 +3,8 @@ define('SpecRunner', [
   'chai',
   'spec/models/favoriteLocation.spec',
   'spec/views/index.spec',
-  'spec/views/locationView.spec'
+  'spec/views/locationView.spec',
+  'spec/support/googlemaps.spec'
 ], function(mocha, chai) {
   window.assert = chai.assert;
   window.expect = chai.expect;

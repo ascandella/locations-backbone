@@ -13,6 +13,10 @@
   border-top: 0;
 }
 
+#map-view {
+  height: 400px;
+}
+
 /* override some foundation styles */
 #location-list form {
   margin-bottom: 0;

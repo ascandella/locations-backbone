@@ -22,6 +22,7 @@ requirejs.config({
   },
 
   paths: {
+    // External dependencies
     'async'              : 'vendor/async.min',
     'backbone'           : 'vendor/backbone-min',
     'foundation'         : 'foundation.min',
@@ -30,6 +31,7 @@ requirejs.config({
     'underscore'         : 'vendor/underscore-min',
     'text'               : 'vendor/text',
 
+    // Application code
     'FavoritesApp'       : 'app',
     'FavoritesRouter'    : 'router',
     'FavoriteLocation'   : 'models/favoriteLocation',
@@ -38,6 +40,7 @@ requirejs.config({
     'LocationCollection' : 'collections/locationCollection',
     'MapView'            : 'views/mapView',
 
+    // Testing
     'mocha'              : 'spec/mocha',
     'chai'               : 'spec/chai',
     'SpecRunner'         : 'spec/specRunner'
