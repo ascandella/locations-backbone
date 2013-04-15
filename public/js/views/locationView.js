@@ -31,10 +31,6 @@ define('LocationView', [
       this.toggleDangerZone();
     },
 
-    cancelDeletion: function() {
-      this.toggleDangerZone();
-    },
-
     toggleDangerZone: function() {
       this.$el.find('.alert')
           .slideToggle()
@@ -45,7 +41,7 @@ define('LocationView', [
 
     cancelInline: function() {
       // They hit 'Cancel' on creating a new entry
-      if (this.editing && !this.id) {
+      if (this.editing && !this.model.id) {
         return this.remove();
       }
 
@@ -84,7 +80,9 @@ define('LocationView', [
       this.$el.html(this.template({
         editing: this.editing,
         location: this.model.toJSON()
-      }));
+      }))
+        .find('input:first').focus();
+
 
       this.$el.find('.alert')
           .hide()
