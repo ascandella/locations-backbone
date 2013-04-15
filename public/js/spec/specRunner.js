@@ -1,7 +1,8 @@
 define('SpecRunner', [
   'mocha',
   'chai',
-  'spec/models/favoriteLocation.spec'
+  'spec/models/favoriteLocation.spec',
+  'spec/views/locationView.spec'
 ], function(mocha, chai) {
   window.assert = chai.assert;
   window.expect = chai.expect;

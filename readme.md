@@ -19,4 +19,9 @@ harness providing for easy refactoring. I did not, for example, test the ins and
 outs of the `sequel` gem, since I trust that its finders have proper spec
 coverage in the gem itself.
 
+To run the frontend tests, visit:
 
+    spec/index.html
+
+This will run the [mocha](http://visionmedia.github.io/mocha/) tests, using
+[chai](http://chaijs.com/) matchers.
