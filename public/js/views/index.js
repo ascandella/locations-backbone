@@ -2,9 +2,10 @@ define('LocationListView', [
   'backbone',
   'jquery',
   'underscore',
+  'FavoriteLocation',
   'LocationCollection',
   'LocationView'
-], function(Backbone, $, _, LocationCollection, LocationView) {
+], function(Backbone, $, _, FavoriteLocation, LocationCollection, LocationView) {
   var LocationListView = Backbone.View.extend({
     events: {
       'click .add-location': 'addLocation'
@@ -23,7 +24,7 @@ define('LocationListView', [
     },
 
     addLocation: function() {
-      // TODO THIS
+      this.locations.add(new FavoriteLocation());
     },
 
     addOne: function(location) {

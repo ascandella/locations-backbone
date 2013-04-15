@@ -6,12 +6,14 @@ define('LocationView', [
   var LocationView = Backbone.View.extend({
     events: {
       'click .edit'   : 'editInline',
+      'click .cancel' : 'editInline',
       'click .submit' : 'updateModel'
     },
 
     initialize: function() {
       this.template = _.template(template);
-      this.editing  = false;
+      // Start in edit mode if we're a new model
+      this.editing  = !this.model.id;
     },
 
     editInline: function() {

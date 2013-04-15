@@ -4,6 +4,20 @@
   margin-left: 12px;
 }
 
+#location-list > div {
+  border-top: 1px solid #ddd;
+  padding: 1em 0;
+}
+
+#location-list > div:first-child {
+  border-top: 0;
+}
+
+/* override some foundation styles */
+#location-list form {
+  margin-bottom: 0;
+}
+
 .hide {
   display: none;
 }

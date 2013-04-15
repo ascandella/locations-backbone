@@ -13,16 +13,24 @@
     <label>Longitude</label>
     <input class="longitude" type="number" placeholder="Enter an address" value="<%= location.longitude %>">
 
-    <a class="small submit button">Update</a>
+    <a class="small submit button">
+      <% if (this.id) { %>
+        Update
+      <% } else { %>
+        Save
+      <% } %>
+    </a>
+
+    <a class="small button secondary cancel">Cancel</a>
   </form>
 
 <% } else { %>
 
-  <h4 class="subheader" data-id="<%= location.id %>">
+  <h5 class="subheader" data-id="<%= location.id %>">
     <a href="#edit" class="edit">
       <%= location.name %>
     </a>
-  </h4>
+  </h5>
   <% if (location.address) { %>
     <p>
       <%= location.address %>
