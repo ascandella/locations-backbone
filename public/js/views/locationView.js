@@ -21,7 +21,7 @@ define('LocationView', [
 
     actuallyDelete: function() {
       var that = this;
-      // this.model.destroy();
+      this.model.destroy();
       this.$el.slideUp(function() {
         that.$el.remove();
       });
