@@ -26,6 +26,13 @@ define('LocationListView', [
     render: function() {
       var that = this;
 
+      // This logic *probably* belongs in a view, but I'd rather keep
+      // collection-views out of the picture and just deal with individual
+      // model-views.
+      if (!this.locations.length) {
+        this.$el.find('.empty-notice').hide().removeClass('hide').fadeIn();
+      }
+
       _.each(this.locations, function(location) {
         that.addOne(location);
       });
