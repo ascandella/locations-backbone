@@ -5,15 +5,42 @@ define('LocationView', [
 ], function(Backbone, _, template) {
   var LocationView = Backbone.View.extend({
     events: {
-      'click .edit'   : 'editInline',
-      'click .cancel' : 'editInline',
-      'click .submit' : 'updateModel'
+      'click .edit'             : 'editInline',
+      'click .cancel'           : 'editInline',
+      'click .cancel-deletion'  : 'cancelDeletion',
+      'click .confirm-deletion' : 'actuallyDelete',
+      'click .delete'           : 'confirmDeletion',
+      'click .submit'           : 'updateModel'
     },
 
     initialize: function() {
       this.template = _.template(template);
       // Start in edit mode if we're a new model
       this.editing  = !this.model.id;
+    },
+
+    actuallyDelete: function() {
+      var that = this;
+      // this.model.destroy();
+      this.$el.slideUp(function() {
+        that.$el.remove();
+      });
+    },
+
+    confirmDeletion: function() {
+      this.toggleDangerZone();
+    },
+
+    cancelDeletion: function() {
+      this.toggleDangerZone();
+    },
+
+    toggleDangerZone: function() {
+      this.$el.find('.alert')
+          .slideToggle()
+          .end()
+        .find('.controls')
+          .slideToggle();
     },
 
     editInline: function() {
@@ -48,6 +75,10 @@ define('LocationView', [
         editing: this.editing,
         location: this.model.toJSON()
       }));
+
+      this.$el.find('.alert')
+          .hide()
+          .removeClass('hide');
 
       return this;
     }
