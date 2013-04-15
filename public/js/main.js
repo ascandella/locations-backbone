@@ -20,9 +20,12 @@ requirejs.config({
     'foundation'         : 'foundation.min',
     'jquery'             : '//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min',
     'underscore'         : '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min',
+    'text'               : '//cdnjs.cloudflare.com/ajax/libs/require-text/2.0.5/text',
+
     'FavoritesApp'       : 'app',
     'FavoriteLocation'   : 'models/favoriteLocation',
     'LocationListView'   : 'views/index',
+    'LocationView'       : 'views/locationView',
     'LocationCollection' : 'collections/locationCollection'
   }
 });

@@ -5,7 +5,6 @@ define('LocationCollection', [
   var LocationCollection = Backbone.Collection.extend({
     model: FavoriteLocation,
     url: '/api/locations'
-
   });
 
   return LocationCollection;
