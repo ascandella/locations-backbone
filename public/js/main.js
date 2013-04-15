@@ -35,7 +35,7 @@ requirejs.config({
     'FavoritesApp'       : 'app',
     'FavoritesRouter'    : 'router',
     'FavoriteLocation'   : 'models/favoriteLocation',
-    'LocationListView'   : 'views/index',
+    'LocationListView'   : 'views/locationListView',
     'LocationView'       : 'views/locationView',
     'LocationCollection' : 'collections/locationCollection',
     'MapView'            : 'views/mapView',

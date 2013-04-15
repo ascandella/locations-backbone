@@ -54,13 +54,12 @@ define('LocationView', [
     },
 
     updateModel: function() {
-
       // This doesn't feel awesome
       this.model.set({
-        address   : this.$el.find('.address').val(),
-        latitude  : this.$el.find('.latitude').val(),
-        longitude : this.$el.find('.longitude').val(),
-        name      : this.$el.find('.name').val()
+        address   : this.$('.address').val(),
+        latitude  : this.$('.latitude').val(),
+        longitude : this.$('.longitude').val(),
+        name      : this.$('.name').val()
       }, { validate: true });
 
       if (this.model.validate(this.model.toJSON())) {

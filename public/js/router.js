@@ -1,8 +1,9 @@
 define('FavoritesRouter', [
   'backbone',
   'LocationListView',
+  'LocationCollection',
   'MapView'
-], function(Backbone, LocationListView, MapView) {
+], function(Backbone, LocationListView, LocationCollection, MapView) {
   var Router = Backbone.Router.extend({
     routes: {
       ''          : 'defaultRoute',
@@ -10,8 +11,10 @@ define('FavoritesRouter', [
     },
 
     initialize: function () {
-      this.locations = new LocationListView();
-      this.mapView = new MapView();
+      this.collection = new LocationCollection();
+      this.locations = new LocationListView({ collection: this.collection });
+
+      this.mapView = new MapView({ collection: this.collection });
       this.mapView.render();
     },
 

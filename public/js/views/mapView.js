@@ -13,6 +13,39 @@ define('MapView', [
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         zoom: 12
       };
+
+      this.markerStore = {};
+
+      this.listenTo(this.collection, 'add remove', this.fitMap);
+      this.listenTo(this.collection, 'add', this.addOne);
+      this.listenTo(this.collection, 'remove', this.removeOne);
+    },
+
+    addOne: function(location) {
+      var marker = new google.maps.Marker({
+        map: this.map,
+        position: location.getPoint(),
+        title: location.get('name')
+      });
+      this.markerStore[location.cid] = marker;
+
+      return marker;
+    },
+
+    fitMap: function() {
+      var bounds = new google.maps.LatLngBounds();
+      this.collection.each(function(location) {
+        bounds.extend(location.getPoint());
+      });
+
+      this.map.fitBounds(bounds);
+    },
+
+    removeOne: function(model) {
+      var marker = this.markerStore[model.cid];
+      if (marker) {
+        marker.setMap(null);
+      }
     },
 
     render: function() {

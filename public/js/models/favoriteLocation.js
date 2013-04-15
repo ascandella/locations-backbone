@@ -1,8 +1,13 @@
 define('FavoriteLocation', [
   'backbone',
   'underscore',
-], function(Backbone, _) {
+  'googlemaps'
+], function(Backbone, _, maps) {
   var FavoriteLocation = Backbone.Model.extend({
+    getPoint: function() {
+      return new google.maps.LatLng(this.get('latitude'), this.get('longitude'));
+    },
+
     toJSON: function() {
       // Somewhat ghetto hack to work around Ruby's overly-trusting JSON parsing
       // situation.

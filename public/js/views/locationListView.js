@@ -17,19 +17,18 @@ define('LocationListView', [
 
     initialize: function() {
       this.template  = _.template(template);
-      this.locations = new LocationCollection();
 
-      this.listenTo(this.locations, 'add', this.addOne);
-      this.listenTo(this.locations, 'removeOne', this.removeOne);
-      this.listenTo(this.locations, 'reset', this.render);
+      this.listenTo(this.collection, 'add', this.addOne);
+      this.listenTo(this.collection, 'remove', this.removeOne);
+      this.listenTo(this.collection, 'reset', this.render);
     },
 
     fetchData: function() {
-      this.locations.fetch();
+      this.collection.fetch();
     },
 
     addLocation: function() {
-      this.locations.add(new FavoriteLocation());
+      this.collection.add(new FavoriteLocation());
     },
 
     addOne: function(location) {
@@ -45,7 +44,7 @@ define('LocationListView', [
     },
 
     removeOne: function() {
-      if (!this.locations.length) {
+      if (!this.collection.length) {
         this.$el.find('.no-locations').show();
       }
     },
@@ -56,7 +55,7 @@ define('LocationListView', [
       }
 
       this.$el.html(this.template({
-        locations: this.locations
+        locations: this.collection
       }));
 
       this._setup = true;
@@ -66,7 +65,7 @@ define('LocationListView', [
       this.setup();
       var that = this;
 
-      this.locations.each(function(location) {
+      this.collection.each(function(location) {
         that.addOne(location);
       });
 
