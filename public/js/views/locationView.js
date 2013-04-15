@@ -17,6 +17,9 @@ define('LocationView', [
       this.template = _.template(template);
       // Start in edit mode if we're a new model
       this.editing  = !this.model.id;
+
+      this.listenTo(this.model, 'invalid', this.invalidForm);
+      this.listenTo(this.model, 'valid', this.validForm);
     },
 
     actuallyDelete: function() {
@@ -55,7 +58,6 @@ define('LocationView', [
     },
 
     updateModel: function() {
-      this.$el.removeClass('error');
 
       // This doesn't feel awesome
       this.model.set({
@@ -63,10 +65,9 @@ define('LocationView', [
         latitude  : this.$el.find('.latitude').val(),
         longitude : this.$el.find('.longitude').val(),
         name      : this.$el.find('.name').val()
-      });
+      }, { validate: true });
 
-      if (!this.model.validate()) {
-        this.$el.addClass('error');
+      if (this.model.validate(this.model.toJSON())) {
         return false;
       }
 
@@ -89,6 +90,14 @@ define('LocationView', [
           .removeClass('hide');
 
       return this;
+    },
+
+    invalidForm: function() {
+      this.$el.addClass('error');
+    },
+
+    validForm: function() {
+      this.$el.removeClass('error');
     }
   });
 
