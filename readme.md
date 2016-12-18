@@ -23,5 +23,5 @@ To run the frontend tests, visit:
 
     spec/index.html
 
-This will run the [mocha](http://visionmedia.github.io/mocha/) tests, using
+This will run the [mocha](http://mochajs.org/) tests, using
 [chai](http://chaijs.com/) matchers.
